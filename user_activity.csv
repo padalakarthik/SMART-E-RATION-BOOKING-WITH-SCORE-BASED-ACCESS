@@ -1,0 +1,165 @@
+card_number,activity_type,details,timestamp
+admin,login,Admin login,2025-10-17 11:06:07
+9423434923,login,User login,2025-10-20 10:39:24
+admin,login,Admin login,2025-10-20 10:40:23
+7451814137,login,User login,2025-10-20 10:42:42
+3256923259,signup,User signed up,2025-10-20 10:43:50
+3256923259,login,User login,2025-10-20 10:43:58
+3256923259,booking,Booked at KPHB on 2025-10-28 Evening,2025-10-20 10:44:20
+admin,login,Admin login,2025-10-20 10:44:39
+KPHB,login,Distributor login for KPHB,2025-10-20 10:45:42
+admin,login,Admin login,2025-10-20 11:06:36
+1234567890,signup,User signed up,2025-10-20 11:08:45
+1234567890,login,User login,2025-10-20 11:08:53
+1234567890,booking,Booked at Gandi on 2025-10-26 Evening,2025-10-20 11:10:10
+2345678901,signup,User signed up,2025-10-20 11:10:53
+2345678901,login,User login,2025-10-20 11:11:01
+2345678901,booking,Booked at Gandi on 2025-10-27 Evening,2025-10-20 11:11:21
+3456789012,signup,User signed up,2025-10-20 11:11:44
+3456789012,login,User login,2025-10-20 11:11:52
+3456789012,booking,Booked at Gandi on 2025-10-28 Evening,2025-10-20 11:12:04
+4567890123,signup,User signed up,2025-10-20 11:12:34
+4567890123,login,User login,2025-10-20 11:12:42
+4567890123,booking,Booked at Gandi on 2025-10-29 Evening,2025-10-20 11:13:21
+5678901234,signup,User signed up,2025-10-20 11:14:13
+5678901234,login,User login,2025-10-20 11:14:20
+5678901234,booking,Booked at Gandi on 2025-10-30 Evening,2025-10-20 11:14:34
+6789012345,signup,User signed up,2025-10-20 11:14:58
+6789012345,login,User login,2025-10-20 11:15:05
+6789012345,booking,Booked at Gandi on 2025-10-31 Evening,2025-10-20 11:15:22
+7890123456,signup,User signed up,2025-10-20 11:15:43
+7890123456,login,User login,2025-10-20 11:15:49
+7890123456,booking,Booked at Gandi on 2025-10-26 Evening,2025-10-20 11:16:02
+8901234567,signup,User signed up,2025-10-20 11:16:53
+8901234567,login,User login,2025-10-20 11:17:00
+8901234567,booking,Booked at Gandi on 2025-10-27 Evening,2025-10-20 11:17:11
+9012345678,signup,User signed up,2025-10-20 11:17:27
+9012345678,login,User login,2025-10-20 11:17:34
+9012345678,booking,Booked at Gandi on 2025-10-28 Evening,2025-10-20 11:17:45
+0123456789,signup,User signed up,2025-10-20 11:18:03
+0123456789,login,User login,2025-10-20 11:18:16
+0123456789,booking,Booked at Gandi on 2025-10-29 Evening,2025-10-20 11:18:28
+1234567800,signup,User signed up,2025-10-20 11:18:56
+1234567800,login,User login,2025-10-20 11:19:04
+1234567800,booking,Booked at Gandi on 2025-10-30 Evening,2025-10-20 11:19:29
+2345678902,signup,User signed up,2025-10-20 11:19:50
+2345678902,login,User login,2025-10-20 11:20:06
+3456789013,signup,User signed up,2025-10-20 11:20:34
+3456789013,login,User login,2025-10-20 11:20:41
+3456789013,booking,Booked at Gandi on 2025-10-31 Evening,2025-10-20 11:20:51
+4567890124,signup,User signed up,2025-10-20 11:21:11
+4567890124,login,User login,2025-10-20 11:21:18
+4567890124,booking,Booked at Gandi on 2025-10-26 Evening,2025-10-20 11:21:28
+5678901235,signup,User signed up,2025-10-20 11:21:58
+5678901235,login,User login,2025-10-20 11:22:05
+5678901235,booking,Booked at Gandi on 2025-10-27 Evening,2025-10-20 11:22:15
+6789012346,signup,User signed up,2025-10-20 11:22:44
+6789012346,login,User login,2025-10-20 11:22:51
+6789012346,booking,Booked at Gandi on 2025-10-28 Evening,2025-10-20 11:23:03
+7890123457,signup,User signed up,2025-10-20 11:23:21
+7890123457,login,User login,2025-10-20 11:23:27
+7890123457,booking,Booked at Gandi on 2025-10-29 Evening,2025-10-20 11:23:38
+8901234568,signup,User signed up,2025-10-20 11:23:53
+8901234568,login,User login,2025-10-20 11:24:02
+8901234568,booking,Booked at Gandi on 2025-10-30 Evening,2025-10-20 11:24:13
+9012345679,signup,User signed up,2025-10-20 11:24:31
+9012345679,login,User login,2025-10-20 11:24:37
+9012345679,booking,Booked at Gandi on 2025-10-31 Evening,2025-10-20 11:24:47
+0123456790,signup,User signed up,2025-10-20 11:25:02
+0123456790,login,User login,2025-10-20 11:25:09
+0123456790,booking,Booked at Gandi on 2025-10-26 Evening,2025-10-20 11:25:18
+1234567891,signup,User signed up,2025-10-20 11:25:33
+1234567891,login,User login,2025-10-20 11:25:41
+1234567891,booking,Booked at Gandi on 2025-10-27 Evening,2025-10-20 11:25:50
+2345678903,signup,User signed up,2025-10-20 11:26:08
+2345678903,login,User login,2025-10-20 11:26:15
+2345678903,booking,Booked at Gandi on 2025-10-28 Evening,2025-10-20 11:26:27
+3456789014,signup,User signed up,2025-10-20 11:26:43
+3456789014,login,User login,2025-10-20 11:26:49
+3456789014,booking,Booked at Gandi on 2025-10-29 Evening,2025-10-20 11:26:59
+4567890125,signup,User signed up,2025-10-20 11:27:17
+4567890125,login,User login,2025-10-20 11:27:25
+4567890125,booking,Booked at Gandi on 2025-10-30 Evening,2025-10-20 11:27:39
+5678901236,signup,User signed up,2025-10-20 11:27:57
+5678901236,login,User login,2025-10-20 11:28:09
+5678901236,booking,Booked at Gandi on 2025-10-31 Evening,2025-10-20 11:28:20
+Gandi,login,Distributor login for Gandi,2025-10-20 11:28:46
+6789012347,signup,User signed up,2025-10-20 12:08:43
+6789012347,login,User login,2025-10-20 12:08:50
+6789012347,booking,Booked at Shapure on 2025-10-26 Morning,2025-10-20 12:09:09
+7890123458,signup,User signed up,2025-10-20 12:28:12
+7890123458,login,User login,2025-10-20 12:28:19
+7890123458,booking,Booked at Shapure on 2025-10-27 Morning,2025-10-20 12:28:33
+8901234569,signup,User signed up,2025-10-20 12:28:50
+8901234569,login,User login,2025-10-20 12:28:57
+8901234569,booking,Booked at Shapure on 2025-10-28 Morning,2025-10-20 12:29:10
+9012345680,signup,User signed up,2025-10-20 12:29:30
+9012345680,login,User login,2025-10-20 12:29:37
+9012345680,booking,Booked at Gandi on 2025-10-30 Morning,2025-10-20 12:29:48
+0123456791,signup,User signed up,2025-10-20 12:30:08
+0123456791,login,User login,2025-10-20 12:30:16
+0123456791,booking,Booked at Shapure on 2025-10-30 Morning,2025-10-20 12:30:28
+1234567892,signup,User signed up,2025-10-20 12:30:47
+1234567892,login,User login,2025-10-20 12:30:55
+1234567892,booking,Booked at Chintal on 2025-10-30 Morning,2025-10-20 12:31:08
+admin,login,Admin login,2025-10-20 12:31:58
+Gandi,login,Distributor login for Gandi,2025-10-20 12:36:54
+Gandi,login,Distributor login for Gandi,2025-10-20 12:45:03
+admin,login,Admin login,2025-10-20 12:46:00
+Gandi,login,Distributor login for Gandi,2025-10-21 10:59:58
+admin,login,Admin login,2025-10-28 09:45:57
+2345678904,signup,User signed up,2025-10-28 09:47:33
+2345678904,login,User login,2025-10-28 09:47:40
+2345678904,booking,Booked at KPHB on 2025-11-03 Morning,2025-10-28 09:48:06
+3456789015,signup,User signed up,2025-10-28 09:48:28
+3456789015,login,User login,2025-10-28 09:48:34
+3456789015,booking,Booked at KPHB on 2025-11-03 Morning,2025-10-28 09:48:48
+4567890126,signup,User signed up,2025-10-28 09:49:58
+4567890126,login,User login,2025-10-28 09:50:06
+4567890126,booking,Booked at KPHB on 2025-11-03 Morning,2025-10-28 09:50:20
+4567890126,login,User login,2025-10-28 09:54:45
+5678901237,signup,User signed up,2025-10-28 10:06:34
+5678901237,login,User login,2025-10-28 10:06:42
+5678901237,booking,Booked at Chintal on 2025-11-03 Evening,2025-10-28 10:07:00
+6789012348,signup,User signed up,2025-10-28 10:07:31
+6789012348,login,User login,2025-10-28 10:07:38
+6789012348,booking,Booked at Chintal on 2025-11-03 Morning,2025-10-28 10:07:56
+7890123459,signup,User signed up,2025-10-28 10:08:14
+7890123459,login,User login,2025-10-28 10:08:22
+7890123459,booking,Booked at Chintal on 2025-11-03 Evening,2025-10-28 10:08:42
+8901234570,signup,User signed up,2025-10-28 10:09:21
+8901234570,login,User login,2025-10-28 10:09:32
+8901234570,booking,Booked at Chintal on 2025-11-03 Evening,2025-10-28 10:09:45
+9012345681,signup,User signed up,2025-10-28 10:10:02
+9012345681,login,User login,2025-10-28 10:10:09
+9012345681,booking,Booked at Chintal on 2025-11-03 Morning,2025-10-28 10:10:21
+0123456792,signup,User signed up,2025-10-28 10:10:41
+0123456792,login,User login,2025-10-28 10:10:48
+0123456792,booking,Booked at Chintal on 2025-11-03 Morning,2025-10-28 10:11:03
+0123456792,login,User login,2025-10-28 10:30:45
+1234567893,signup,User signed up,2025-10-28 10:31:03
+1234567893,login,User login,2025-10-28 10:31:10
+1234567893,booking,Booked at Chintal on 2025-11-03 Evening,2025-10-28 10:31:30
+2345678905,signup,User signed up,2025-10-28 10:31:55
+2345678905,login,User login,2025-10-28 10:32:04
+2345678905,booking,Booked at Chintal on 2025-11-03 Evening,2025-10-28 10:32:16
+3456789016,signup,User signed up,2025-10-28 10:32:33
+3456789016,login,User login,2025-10-28 10:32:39
+3456789016,booking,Booked at Chintal on 2025-11-03 Evening,2025-10-28 10:32:51
+admin,login,Admin login,2025-10-29 18:48:59
+1941095722,score_update,Score changed from 100 to 95 (admin update),2025-10-29 18:50:03
+1941095722,login,User login,2025-10-29 18:50:22
+admin,login,Admin login,2025-10-29 19:26:00
+Chintal,login,Distributor login for Chintal,2025-10-29 19:27:19
+admin,login,Admin login,2025-10-31 17:14:01
+Gandi,login,Distributor login for Gandi,2025-10-31 17:14:43
+admin,login,Admin login,2025-11-01 19:01:29
+admin,login,Admin login,2025-11-01 19:04:27
+9423434923,login,User login,2025-11-07 14:16:12
+Gandi,login,Distributor login for Gandi,2025-11-07 14:19:27
+admin,login,Admin login,2025-11-07 14:21:07
+Gandi,login,Distributor login for Gandi,2025-11-11 12:14:10
+admin,login,Admin login,2025-11-11 12:15:06
+1234567904,signup,User signed up,2025-11-11 12:16:23
+1234567904,login,User login,2025-11-11 12:16:37
+1234567904,booking,Booked at Chintal on 2025-11-20 Evening,2025-11-11 12:17:12

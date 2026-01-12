@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body class="bg-gray-100 font-['Inter'] min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold text-blue-600 text-center mb-6">Admin Dashboard</h2>
+        <a href="{{ url_for('logout') }}" class="block text-center text-red-600 hover:text-red-800 mb-4">Logout</a>
+        
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Search Users</h3>
+            <form method="POST" class="flex flex-col sm:flex-row gap-4">
+                <div>
+                    <label for="card_number" class="block text-sm font-medium text-gray-700">Search by Card Number</label>
+                    <input type="text" id="card_number" name="card_number" placeholder="Enter card number" value="{{ card_number or '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="score_filter" class="block text-sm font-medium text-gray-700">Sort by Score</label>
+                    <select id="score_filter" name="score_filter" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="" {% if not score_filter %}selected{% endif %}>All Scores</option>
+                        <option value="below_35" {% if score_filter == 'below_35' %}selected{% endif %}>Below 35</option>
+                        <option value="above_35" {% if score_filter == 'above_35' %}selected{% endif %}>Above 35</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition transform hover:scale-105">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">User List {% if card_number or score_filter %} (Filtered: {% if card_number %}Card Number: {{ card_number }}{% endif %}{% if card_number and score_filter %}, {% endif %}{% if score_filter %}Score: {{ score_filter.replace('_', ' ') | title }}{% endif %}) {% endif %}</h3>
+            {% if users %}
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-300">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="py-2 px-4 border-b text-left">Card Number</th>
+                                <th class="py-2 px-4 border-b text-left">Holder Name</th>
+                                <th class="py-2 px-4 border-b text-left">Family Members</th>
+                                <th class="py-2 px-4 border-b text-left">Score</th>
+                                <th class="py-2 px-4 border-b text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td class="py-2 px-4 border-b">{{ user.card_number }}</td>
+                                    <td class="py-2 px-4 border-b">{{ user.card_holder_name }}</td>
+                                    <td class="py-2 px-4 border-b">{{ user.number_of_persons_in_family }}</td>
+                                    <td class="py-2 px-4 border-b">{{ user.score }}</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <form action="{{ url_for('admin_update_score') }}" method="POST" class="inline">
+                                            <input type="hidden" name="card_number" value="{{ user.card_number }}">
+                                            <input type="number" name="new_score" min="0" max="100" value="{{ user.score }}" class="w-16 border-gray-300 rounded-md">
+                                            <button type="submit" class="text-blue-600 hover:underline">Update</button>
+                                        </form>
+                                        <a href="{{ url_for('admin_remove', card_number=user.card_number) }}" class="text-red-600 hover:underline ml-4">Remove</a>
+                                        <a href="{{ url_for('admin_user_report', card_number=user.card_number) }}" class="text-green-600 hover:underline ml-4">View Report</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="text-red-600">No users found for the selected criteria.</p>
+            {% endif %}
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Demand Forecast (MAE: {{ mae }})</h3>
+            <canvas id="forecastChart"></canvas>
+            <script>
+                const ctx = document.getElementById('forecastChart').getContext('2d');
+                const forecasts = {{ forecasts | tojson }};
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: forecasts.map(f => `Day ${f[0]}`),
+                        datasets: [{
+                            label: 'Predicted Bookings',
+                            data: forecasts.map(f => f[1]),
+                            borderColor: '#2563eb',
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-['Inter'] min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-4 py-8 max-w-md">
+        <div class="bg-white shadow-lg rounded-lg p-8">
+            <h2 class="text-3xl font-bold text-blue-600 text-center mb-6">Login to Your Account</h2>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <p class="text-red-600 text-center mb-4">{{ messages[0] }}</p>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="{{ url_for('login') }}" id="login_form" class="space-y-4" onsubmit="return validateForm()">
+                <div>
+                    <label for="login_type" class="block text-sm font-medium text-gray-700">Login As</label>
+                    <select id="login_type" name="login_type" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                        <option value="user" selected>User</option>
+                        <option value="admin">Admin</option>
+                        <option value="distributor">Distributor</option>
+                    </select>
+                </div>
+                <div class="form-group user-fields">
+                    <label for="card_number" class="block text-sm font-medium text-gray-700">Card Number</label>
+                    <input type="text" id="card_number" name="card_number" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" aria-label="Ration Card Number">
+                </div>
+                <div class="form-group user-fields">
+                    <label for="user_password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="user_password" name="user_password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" aria-label="Password">
+                </div>
+                <div class="form-group admin-fields" style="display:none;">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" aria-label="Username">
+                </div>
+                <div class="form-group admin-fields" style="display:none;">
+                    <label for="admin_password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="admin_password" name="admin_password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" aria-label="Password">
+                </div>
+                <div class="form-group distributor-fields" style="display:none;">
+                    <label for="centre" class="block text-sm font-medium text-gray-700">Centre</label>
+                    <select id="centre" name="centre" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" aria-label="Ration Centre">
+                        <option value="">Select Centre</option>
+                        <option value="Gandi">Gandi</option>
+                        <option value="Chintal">Chintal</option>
+                        <option value="Shapure">Shapure</option>
+                        <option value="KPHB">KPHB</option>
+                    </select>
+                </div>
+                <div class="form-group distributor-fields" style="display:none;">
+                    <label for="distributor_code" class="block text-sm font-medium text-gray-700">Centre Code</label>
+                    <input type="password" id="distributor_code" name="distributor_code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" aria-label="Centre Code">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition transform hover:scale-105">Login</button>
+            </form>
+            <a href="{{ url_for('forgot_password') }}" class="block text-center text-blue-600 mt-4 hover:underline">Forgot Password?</a>
+            <p class="text-center text-gray-600 mt-2">Don't have an account? <a href="{{ url_for('signup') }}" class="text-blue-600 hover:underline">Sign Up</a></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginType = document.getElementById('login_type');
+            const form = document.getElementById('login_form');
+            const updateFields = () => {
+                const type = loginType.value;
+                console.log('Login type changed to:', type);
+                document.querySelectorAll('.user-fields').forEach(el => {
+                    el.style.display = type === 'user' ? 'block' : 'none';
+                    el.querySelectorAll('input').forEach(input => input.disabled = type !== 'user');
+                });
+                document.querySelectorAll('.admin-fields').forEach(el => {
+                    el.style.display = type === 'admin' ? 'block' : 'none';
+                    el.querySelectorAll('input').forEach(input => input.disabled = type !== 'admin');
+                });
+                document.querySelectorAll('.distributor-fields').forEach(el => {
+                    el.style.display = type === 'distributor' ? 'block' : 'none';
+                    el.querySelectorAll('input, select').forEach(input => input.disabled = type !== 'distributor');
+                });
+            };
+            loginType.addEventListener('change', updateFields);
+            updateFields();
+
+            window.validateForm = () => {
+                const type = loginType.value;
+                console.log('Form submitting with login_type:', type);
+                if (!['user', 'admin', 'distributor'].includes(type)) {
+                    alert('Invalid login type selected.');
+                    return false;
+                }
+                if (type === 'user') {
+                    const cardNumber = document.getElementById('card_number').value.trim();
+                    const password = document.getElementById('user_password').value;
+                    if (!cardNumber || !password) {
+                        alert('Please enter card number and password.');
+                        return false;
+                    }
+                }
+                if (type === 'admin') {
+                    const username = document.getElementById('username').value.trim();
+                    const password = document.getElementById('admin_password').value;
+                    if (!username || !password) {
+                        alert('Please enter username and password.');
+                        return false;
+                    }
+                }
+                if (type === 'distributor') {
+                    const centre = document.getElementById('centre').value;
+                    const code = document.getElementById('distributor_code').value.trim();
+                    console.log('Distributor fields:', { centre, code });
+                    if (!centre || !code) {
+                        alert('Please select a centre and enter a code.');
+                        return false;
+                    }
+                }
+                return true;
+            };
+        });
+    </script>
+</body>
+</html>
