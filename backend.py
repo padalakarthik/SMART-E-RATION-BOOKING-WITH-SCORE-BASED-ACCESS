@@ -115,36 +115,48 @@ def add_to_blockchain(data):
 
 
 def forecast_demand():
-    """Predict next 7 days' bookings using Linear Regression."""
     booking_df = load_csv(BOOKING_CSV)
     if booking_df.empty:
         return [], 0.0
 
     booking_df['date'] = pd.to_datetime(booking_df['date'], errors='coerce')
     booking_df = booking_df.dropna(subset=['date'])
-    if booking_df.empty:
-        return [], 0.0
 
     aggregated_df = booking_df.groupby('date').size().reset_index(name='count')
     aggregated_df['day'] = aggregated_df['date'].dt.dayofyear
+
     X = aggregated_df['day'].values.reshape(-1, 1)
     y = aggregated_df['count'].values
 
     if len(X) < 2:
         return [], 0.0
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
     model = LinearRegression()
     model.fit(X_train, y_train)
+
     mae = mean_absolute_error(y_test, model.predict(X_test))
 
-    last_day = aggregated_df['day'].max()
-    future_days = np.array(range(last_day + 1, last_day + 8)).reshape(-1, 1)
-    forecasts = model.predict(future_days)
-    forecasts = [(int(day), max(0, float(round(prediction)))) for day, prediction in
-                 zip(future_days.flatten(), forecasts)]
-    return forecasts, float(round(mae, 2))
+    # Get last real date
+    last_date = aggregated_df['date'].max()
 
+    # Generate next 7 real dates
+    future_dates = pd.date_range(start=last_date + pd.Timedelta(days=1), periods=7)
+
+    # Convert to dayofyear for model input
+    future_days = future_dates.dayofyear.values.reshape(-1, 1)
+
+    forecasts = model.predict(future_days)
+
+    forecasts = [
+        (date.strftime("%Y-%m-%d"), max(0, float(round(pred))))
+        for date, pred in zip(future_dates, forecasts)
+    ]
+
+    return forecasts, float(round(mae, 2))
 
 # === MONTHLY SCORE UPDATE (Runs on Last Day of Month) ===
 
@@ -402,12 +414,19 @@ def book():
         flash('Booking must be at least 5 days in advance')
         return redirect(url_for('user_dashboard', section='booking'))
 
+    # ==================== NEW: MAX 5 BOOKINGS CHECK ====================
+    current_bookings = get_booking_count(centre, date, session_time)
+    if current_bookings >= 5:
+        flash('Maximum number of bookings for this slot is already completed. Please choose another slot.')
+        return redirect(url_for('user_dashboard', section='booking'))
+    # ===================================================================
+
     current_month = get_current_month_year()
     booking_df = load_csv(BOOKING_CSV)
     monthly_bookings = booking_df[
         (booking_df['card_number'] == card_number) &
         (booking_df['date'].str.startswith(current_month))
-        ]
+    ]
     if not monthly_bookings.empty:
         flash('You can book only once per month')
         return redirect(url_for('user_dashboard', section='booking'))
@@ -561,4 +580,3 @@ if __name__ == '__main__':
     start_scheduler()  # Start background job
     app.run(debug=True)
 
-#host='10.201.237.183',port=8000,
